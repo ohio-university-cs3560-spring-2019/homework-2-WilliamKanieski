@@ -8,10 +8,13 @@ prog1: $(OBJS)
 main.o: main.cc ./include/replace.h
 	g++ -c -I ./include main.cc
 
+#Makes the lib folder if it does not already exist
 #Compiles replace.o from replace.cc and replace.h
 #Compiles replace.a from replace.o before deleting redundant replace.o
 #replace.a is compiled into the lib directory
+
 lib/replace.a: replace.cc ./include/replace.h
+	mkdir -p lib
 	g++ -c -I ./include replace.cc
 	ar rcv ./lib/replace.a replace.o
 	rm replace.o
